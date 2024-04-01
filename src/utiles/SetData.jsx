@@ -19,11 +19,8 @@ export default function SetData({ onClose }) {
   const createData = () => {
     const uuid = uid();
     set(ref(db, `/${uuid}`), {
-      primaryData,
-      uuid,
-      email: user.email,
-      pin,
-      amount
+      primaryData:{...primaryData,email:user.email,pin,amount},
+     uuid
     });
     localStorage.removeItem('taka');
     onClose();

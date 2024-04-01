@@ -14,6 +14,7 @@ export default function RightSection() {
  
 
 
+
   const Status = [
     {
       name: "Bank account",

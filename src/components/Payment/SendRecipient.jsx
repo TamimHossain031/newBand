@@ -35,7 +35,7 @@ export default function SendRecipient() {
         country,
       };
        
-      if (amount >= payment ) {
+      if (payment ) {
         const taka = amount - payment ;
         
         localStorage.setItem("allPaymentData", JSON.stringify(items));
