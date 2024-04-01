@@ -12,7 +12,7 @@ export default function RightSection() {
   const { ...data } = useContext(customerData);
 
  
-  console.log(data[0]);
+ 
   
 
 
@@ -51,7 +51,7 @@ export default function RightSection() {
           </div>
         </div>
         <h1 class Name="mx-auto text-3xl">
-        {data && data[0][0]?.primaryData.amount} $
+        {localStorage.getItem('amount')} $
         </h1>
       </div>
 
