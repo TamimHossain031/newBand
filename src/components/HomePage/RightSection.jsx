@@ -107,7 +107,7 @@ export default function RightSection() {
           <tbody className="text-xs">
            {
             data[0].map(single=>{
-              console.log(single);
+            
               return (
                 <tr>
                   <td>{single?.primaryData.time}</td>

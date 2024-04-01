@@ -8,8 +8,11 @@ export default function Success() {
     localStorage.removeItem("allPaymentData");
   };
 
-  const { payment, bankAcNumber, acHolderName, bank, contact, country } =
+  const data =
     JSON.parse(localStorage.getItem("allPaymentData"));
+    console.log(data);
+    
+
 
   return (
     <section className="w-full bg-gray-100 p-7  text-black border border-1 border-red-100">
@@ -29,15 +32,15 @@ export default function Success() {
       <p className="font-bold text-xl mt-7">To</p>
       <div className="flex text-gray-500 text-sm border-b pb-3">
         <div className="w-1/2 space-y-3">
-          <p>Bank Ac Number : </p><span className="text-black font-bold">{payment}</span>
-          <p>Ac Holder Name : </p><span className="text-black font-bold">{acHolderName}</span>
-          <p>Bank Name :</p><span className="text-black font-bold">{bank}</span>
+          <p>Bank Ac Number : </p><span className="text-black font-bold">{data?.bankNumber}</span>
+          <p>Ac Holder Name : </p><span className="text-black font-bold">{data?.holderName}</span>
+          <p>Bank Name :</p><span className="text-black font-bold">{data?.bankName}</span>
         </div>
         <div className="space-y-3">
           
 
-          <p>Contact Number :</p> <span className="text-black font-bold">{contact}</span>
-          <p>Bank Country Name : </p><span className="text-black font-bold">{country}</span>
+          <p>Contact Number :</p> <span className="text-black font-bold">{data?.contact}</span>
+          <p>Bank Country Name : </p><span className="text-black font-bold">{data?.bankCountry}</span>
         </div>
       </div>
       <h1 className="mt-4 text-xl font-bold">When</h1>
@@ -54,8 +57,8 @@ export default function Success() {
       </div>
       
 
-        <p className="font-bold border-b pb-2">Amount : {payment}</p>
-        <p className="font-bold  pt-2">Total : {payment}</p>
+        <p className="font-bold border-b pb-2">Amount : {data?.amount}</p>
+        <p className="font-bold  pt-2">Total : {data?.amount}</p>
       
       <button className="text-white  p-1 bg-red-500 float-right" onClick={handleClose}>
         Close

@@ -11,7 +11,7 @@ export default function CustomerDataProvider({ children }) {
   useEffect(() => {
     onValue(ref(db), (snapshot) => {
       const dataDB = snapshot.val();
-      console.log(dataDB);
+     
       
       if (dataDB) {
         const filterdData = Object.values(dataDB).filter(
@@ -22,7 +22,7 @@ export default function CustomerDataProvider({ children }) {
     });
   }, []);
   
-console.log(data)
+
 
   
   

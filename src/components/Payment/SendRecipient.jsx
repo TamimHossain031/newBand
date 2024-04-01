@@ -1,4 +1,4 @@
-import { ref } from "firebase/database";
+
 import { useContext, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -6,13 +6,12 @@ import { customerData } from "../../context";
 import { db } from "../../firebase";
 import Nav from "../HomePage/Nav";
 export default function SendRecipient() {
-  const { ...data } = useContext(customerData);
+ 
   
-  const process = data[0]; 
   
  
  
-  const [uid,setUid] = useState(process[0].uuid);
+ 
   const history = useNavigate();
   const [payment, setPayment] = useState("");
   const [bankAcNumber, setBankAcNumber] = useState("");
@@ -20,26 +19,30 @@ export default function SendRecipient() {
   const [bank, setBank] = useState("");
   const [contact, setContact] = useState("");
   const [country, setCountry] = useState("");
+
+
+  const [allData,setAllData] = useState({});
+  const addData = (e) => {
+    setAllData({
+      ...allData,
+      [e.target.name]: e.target.value
+    })
+  };
   
   localStorage.setItem('cutData',payment)
-  const amount = localStorage.getItem('amount') - localStorage.getItem('cutData');
+  const amount = localStorage.getItem('amount') - allData.amount;
  
+ console.log(allData);
+ 
+
+
    
-  const handleNext = (e) => {
-    if (payment && bankAcNumber && acHolderName && bank && contact && country) {
-      let items = {
-        payment,
-        bankAcNumber,
-        acHolderName,
-        bank,
-        contact,
-        country,
-      };
-       
+  const handleNext = () => {
+    
       if ( amount > 0 ) {
-        const taka = amount - payment ;
         
-        localStorage.setItem("allPaymentData", JSON.stringify(items));
+        
+        localStorage.setItem("allPaymentData", JSON.stringify(allData));
         localStorage.setItem('amount',amount)
         history('/Pay/SendRecipient/PinBox');
       }else{
@@ -48,14 +51,10 @@ export default function SendRecipient() {
         
       }
 
-    } else  {
-      alert("please fill all field");
-    }
+    
   };
 
-  const addData = (e, callback) => {
-    callback(e.target.value);
-  };
+  
 
   
   
