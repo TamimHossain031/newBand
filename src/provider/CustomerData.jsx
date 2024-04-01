@@ -11,9 +11,11 @@ export default function CustomerDataProvider({ children }) {
   useEffect(() => {
     onValue(ref(db), (snapshot) => {
       const dataDB = snapshot.val();
+      console.log(dataDB);
+      
       if (dataDB) {
         const filterdData = Object.values(dataDB).filter(
-          (single) => single.email === user?.email
+          (single) => single.primaryData?.email === user?.email
         );
         setData([...filterdData]);
       }

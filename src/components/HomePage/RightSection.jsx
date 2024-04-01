@@ -12,7 +12,8 @@ export default function RightSection() {
   const { ...data } = useContext(customerData);
 
  
-
+  console.log(data[0]);
+  
 
 
   const Status = [
@@ -37,7 +38,7 @@ export default function RightSection() {
     <section className="w-2/3 grid gap-3">
       <div className=" bg-white mt-6 py-9 px-7">
         <div className=" flex justify-between rounded-md mb-8">
-          <h1 className="font-bold">Total Balance </h1>
+          <h1 className="font-bold">Total Balance</h1>
           <div className="text-sm text-sky-500 font-semibold space-x-2">
             <button
               className="border border-sky-500 py-1 px-3 rounded-full"
@@ -50,7 +51,7 @@ export default function RightSection() {
           </div>
         </div>
         <h1 class Name="mx-auto text-3xl">
-         
+        {data && data[0][0]?.primaryData.amount} $
         </h1>
       </div>
 
@@ -104,7 +105,19 @@ export default function RightSection() {
             </tr>
           </thead>
           <tbody className="text-xs">
-           
+           {
+            data[0].map(single=>{
+              console.log(single);
+              return (
+                <tr>
+                  <td>{single?.primaryData.time}</td>
+                  <td>{single?.primaryData.amount}</td>
+                  <td>{single?.primaryData.fromTo}</td>
+                  <td>{single?.primaryData.status}</td>
+                </tr>
+              )
+            })
+           }
           </tbody>
         </table>
       </div>
