@@ -10,11 +10,11 @@ export default function PinBox() {
  const history = useNavigate()
   const [pin, setPin] = useState("");
   const { ...data } = useContext(customerData);
-
+const datapin = localStorage.getItem('pin')
   const process = data[0][0];
 
   const handleSubmit = () => {
-    if (process.pin === pin) {
+    if (datapin === pin) {
       history('/Pay/SendRecipient/PinBox/Success');
     } else {
       alert("Enter valid PIN");

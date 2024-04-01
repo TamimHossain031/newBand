@@ -21,9 +21,10 @@ export default function SendRecipient() {
   const [contact, setContact] = useState("");
   const [country, setCountry] = useState("");
   
-  const amount =process[0].amount - localStorage.getItem('taka');
+  localStorage.setItem('cutData',payment)
+  const amount = localStorage.getItem('amount') - localStorage.getItem('cutData');
  
-  
+   
   const handleNext = (e) => {
     if (payment && bankAcNumber && acHolderName && bank && contact && country) {
       let items = {
@@ -35,11 +36,11 @@ export default function SendRecipient() {
         country,
       };
        
-      if (true ) {
+      if ( amount > 0 ) {
         const taka = amount - payment ;
         
         localStorage.setItem("allPaymentData", JSON.stringify(items));
-        localStorage.setItem('taka',taka)
+        localStorage.setItem('amount',amount)
         history('/Pay/SendRecipient/PinBox');
       }else{
         alert('sufficent balance');

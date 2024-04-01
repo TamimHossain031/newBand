@@ -10,6 +10,7 @@ export default function SetData({ onClose }) {
   const [user, loading, error] = useAuthState(database);
 
   localStorage.setItem('amount',amount);
+  localStorage.setItem('pin',pin)
 
   const handleData = (e) => {
     setPrimaryData({
