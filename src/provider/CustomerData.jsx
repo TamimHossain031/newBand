@@ -8,7 +8,7 @@ import { onSnapshot,query,where } from "firebase/firestore";
 export default function CustomerDataProvider({ children }) {
   const [user, loading, error] = useAuthState(database);
   const [data, setData] = useState('');
-  const email = user?.email;
+  const email = user?.email &&  'dhony@gmail.com';
   
   
   const getData = () => {  
