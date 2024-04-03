@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { customerData } from "../../context";
 import SingleStatus from "./SingleStatus.jsx";
 
+
 export default function RightSection() {
   const history = useNavigate();
   const data = useContext(customerData);
-
+  
   
   const taka = localStorage.getItem('amount')
+ 
  
  
   

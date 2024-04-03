@@ -5,16 +5,20 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logoBlueBackground.png";
 import { isLoginContext } from "../../context";
 import { database } from "../../firebase";
+import {customerData} from "../../context"
 export default function Nav() {
   const history = useNavigate();
   const [signIn, setSignIn] = useState(false);
   const { login, setLogin } = useContext(isLoginContext);
+  const data = useContext(customerData);
   const signoutFunction = () => {
     signOut(database).then((val) => {
       history("/");
       setLogin(!login);
     });
   };
+  console.log();
+  
   return (
     <nav className="w-full flex justify-between px-5 py-2 shadow-md relative bg-blue-500 text-white">
       <div className="flex">
@@ -31,6 +35,7 @@ export default function Nav() {
 
       <button className="" onClick={() => setSignIn(!signIn)}>
         <CgProfile />
+      <p>{data[data.length - 1]?.name}</p>
       </button>
 
       {signIn && (

@@ -1,42 +1,36 @@
-import { onValue, ref, update } from "firebase/database";
 import { useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { database } from "../firebase";
+import { onSnapshot } from "firebase/firestore";
 import { customerData } from "../context";
-import { database,usersRef } from "../firebase";
-import { onSnapshot,query } from "firebase/firestore";
-
+import { usersRef } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 export default function CustomerDataProvider({ children }) {
+  const [data, setData] = useState("");
   const [user, loading, error] = useAuthState(database);
-  const [data, setData] = useState('');
-
-  
-  
-  const getData = () => {  
-   
-      onSnapshot(usersRef,(snapshot) => {
-        let books = [];
-        snapshot.docs.forEach((docs) => {
-         
-            books.push({ ...docs.data()});
+  const getData = () => {
+    return onSnapshot(usersRef, (snapshot) => {
+      let books = [];
+      snapshot.docs.forEach((docs) => {
+        if(docs.data().email === user?.email){
+          books.push({ ...docs.data() });    
+        }
           
-         
-        });
-       setData(books)
-      })
+        
+      });
+      setData(books)
+    });
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   
 
-useEffect(()=>{
-  getData()
-},[]) 
-  
-
-
+  // alldata.filter(single => single.email == email)
   return (
     <>
-      <customerData.Provider value={data}>
-        {children}
-        </customerData.Provider>
+      <customerData.Provider value={data}>{children}</customerData.Provider>
     </>
   );
 }
