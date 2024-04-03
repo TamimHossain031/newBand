@@ -10,9 +10,9 @@ export default function CustomerDataProvider({ children }) {
   const [data, setData] = useState('');
   const email = user?.email;
   
-  const queryData = query(usersRef,where('email','==',email))
+  
   const getData = () => {  
-
+    const queryData = query(usersRef,where('email','==',email))
       onSnapshot(queryData,(snapshot) => {
         let books = [];
         snapshot.docs.forEach((docs) => {
