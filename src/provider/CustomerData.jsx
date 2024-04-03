@@ -11,7 +11,7 @@ export default function CustomerDataProvider({ children }) {
     return onSnapshot(usersRef, (snapshot) => {
       let books = [];
       snapshot.docs.forEach((docs) => {
-        if(docs.data().email === user?.email){
+        if(docs.data().email == user?.email){
           books.push({ ...docs.data() });    
         }
           return books;
@@ -25,7 +25,7 @@ export default function CustomerDataProvider({ children }) {
     getData();
   }, []);
 
-  
+  console.log(user?.email)
   console.log(data);
   
   // alldata.filter(single => single.email == email)
