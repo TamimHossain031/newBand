@@ -8,12 +8,12 @@ import { onSnapshot,query,where } from "firebase/firestore";
 export default function CustomerDataProvider({ children }) {
   const [user, loading, error] = useAuthState(database);
   const [data, setData] = useState('');
-  const email = user?.email &&  'dhony@gmail.com';
+
   
   
   const getData = () => {  
-    const queryData = query(usersRef,where('email','==',email))
-      onSnapshot(queryData,(snapshot) => {
+   
+      onSnapshot(usersRef,(snapshot) => {
         let books = [];
         snapshot.docs.forEach((docs) => {
          

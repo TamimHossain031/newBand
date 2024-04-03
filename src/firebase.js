@@ -1,50 +1,52 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { addDoc, collection, getDocs, getFirestore,doc, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA2cZErJ0wrgn-UHDe-6E0ODPngbJs9ggE",
+  apiKey: "AIzaSyDGzNURAT4jLhKpS8iC6wH-V8geE8wHLrI",
 
-  authDomain: "newone-92cf9.firebaseapp.com",
+  authDomain: "hosting-87370.firebaseapp.com",
 
-  projectId: "newone-92cf9",
+  projectId: "hosting-87370",
 
-  storageBucket: "newone-92cf9.appspot.com",
+  storageBucket: "hosting-87370.appspot.com",
 
-  messagingSenderId: "101165449534",
+  messagingSenderId: "809920948971",
 
-  appId: "1:101165449534:web:76492614cd669c5c1bac6f",
+  appId: "1:809920948971:web:962cc280444a3332b36cae",
+
+  measurementId: "G-J339GPV66B",
 };
 
 const app = initializeApp(firebaseConfig);
 const database = getAuth(app);
 const db = getFirestore();
 const colRef = collection(db, "transiction");
-const usersRef = collection(db,'users')
-
+const usersRef = collection(db, "users");
 
 // adding
-const adding = (data,type) => {
-  if(type === 'users'){
+const adding = (data, type) => {
+  if (type === "users") {
     addDoc(usersRef, data);
-  }else{
+  } else {
     addDoc(colRef, data);
   }
- 
 };
 
+//update Data
 
-//update Data 
-
-const update =(email,data)=>{
-  const docRef = doc(db,'users',email);
-  updateDoc(docRef,{
-    pin : data
-  }).then(()=> alert('set Data'))
-  
-}
-
-
+const update = (email, data) => {
+  const docRef = doc(db, "users", email);
+  updateDoc(docRef, {
+    pin: data,
+  }).then(() => alert("set Data"));
+};
 
 const registerWithEmailAndPass = async (email, password) => {
   try {
@@ -55,4 +57,4 @@ const registerWithEmailAndPass = async (email, password) => {
   }
 };
 
-export { update,usersRef,adding, database, registerWithEmailAndPass };
+export { adding, database, registerWithEmailAndPass, update, usersRef };
