@@ -14,7 +14,7 @@ export default function CustomerDataProvider({ children }) {
         if(docs.data().email === user?.email){
           books.push({ ...docs.data() });    
         }
-          
+          return books;
         
       });
       setData(books)
@@ -26,7 +26,8 @@ export default function CustomerDataProvider({ children }) {
   }, []);
 
   
-
+  console.log(data);
+  
   // alldata.filter(single => single.email == email)
   return (
     <>

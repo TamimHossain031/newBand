@@ -17,6 +17,7 @@ export default function RightSection() {
  
  
  
+  console.log(data);
   
 
 
@@ -112,7 +113,7 @@ export default function RightSection() {
           {
             data && data.map(single=>{
               return(
-                <tr>
+                <tr key={crypto.randomUUID()}>
                   <td>{single?.time}</td>
                   <td>{single?.tAmount}</td>
                   <td>{single?.fromTo}</td>
