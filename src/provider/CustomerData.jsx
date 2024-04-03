@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { customerData } from "../context";
 import { database,usersRef } from "../firebase";
-import { onSnapshot,query,where } from "firebase/firestore";
+import { onSnapshot,query } from "firebase/firestore";
 
 export default function CustomerDataProvider({ children }) {
   const [user, loading, error] = useAuthState(database);
