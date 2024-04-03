@@ -9,8 +9,10 @@ import SingleStatus from "./SingleStatus.jsx";
 
 export default function RightSection() {
   const history = useNavigate();
-  const { ...data } = useContext(customerData);
+  const data = useContext(customerData);
 
+  
+  const taka = localStorage.getItem('amount')
  
  
   
@@ -51,7 +53,7 @@ export default function RightSection() {
           </div>
         </div>
         <h1 class Name="mx-auto text-3xl">
-        {localStorage.getItem('amount')} $
+       {taka ? taka : data && data[0]?.amount} $
         </h1>
       </div>
 
@@ -105,19 +107,18 @@ export default function RightSection() {
             </tr>
           </thead>
           <tbody className="text-xs">
-           {
-            data[0].map(single=>{
-            
-              return (
+          {
+            data && data.map(single=>{
+              return(
                 <tr>
-                  <td>{single?.primaryData.time}</td>
-                  <td>{single?.primaryData.amount}</td>
-                  <td>{single?.primaryData.fromTo}</td>
-                  <td>{single?.primaryData.status}</td>
+                  <td>{single?.time}</td>
+                  <td>{single?.tAmount}</td>
+                  <td>{single?.fromTo}</td>
+                  <td>{single?.status}</td>
                 </tr>
               )
             })
-           }
+          }
           </tbody>
         </table>
       </div>

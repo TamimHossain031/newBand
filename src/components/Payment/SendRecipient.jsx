@@ -3,10 +3,12 @@ import { useContext, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { customerData } from "../../context";
-import { db } from "../../firebase";
+
+
 import Nav from "../HomePage/Nav";
 export default function SendRecipient() {
- 
+ const data = useContext(customerData)
+  console.log();
   
   
  
@@ -30,9 +32,9 @@ export default function SendRecipient() {
   };
   
   localStorage.setItem('cutData',payment)
-  const amount = localStorage.getItem('amount') - allData.amount;
+  const amount = data[0].amount - allData.amount;
  
- console.log(allData);
+
  
 
 

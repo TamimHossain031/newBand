@@ -10,7 +10,7 @@ export default function Success() {
 
   const data =
     JSON.parse(localStorage.getItem("allPaymentData"));
-    console.log(data);
+    
     
 
 

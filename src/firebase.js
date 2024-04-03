@@ -1,29 +1,51 @@
-
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword,getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
-
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { addDoc, collection, getDocs, getFirestore,doc, updateDoc } from "firebase/firestore";
 
 const firebaseConfig = {
+  apiKey: "AIzaSyA2cZErJ0wrgn-UHDe-6E0ODPngbJs9ggE",
 
-  apiKey:'AIzaSyC4kvuBVVRvIZkiJQqd9biadobMv8tq4Mw',
+  authDomain: "newone-92cf9.firebaseapp.com",
 
-  authDomain: "slow-3f674.firebaseapp.com",
+  projectId: "newone-92cf9",
 
-  projectId: "slow-3f674",
+  storageBucket: "newone-92cf9.appspot.com",
 
-  storageBucket: "slow-3f674.appspot.com",
+  messagingSenderId: "101165449534",
 
-  messagingSenderId: "913502615716",
-
-  appId: "1:913502615716:web:5ff3e8e6ac1d89797ece31"
-
+  appId: "1:101165449534:web:76492614cd669c5c1bac6f",
 };
-
-
 
 const app = initializeApp(firebaseConfig);
 const database = getAuth(app);
+const db = getFirestore();
+const colRef = collection(db, "transiction");
+const usersRef = collection(db,'users')
+
+
+// adding
+const adding = (data,type) => {
+  if(type === 'users'){
+    addDoc(usersRef, data);
+  }else{
+    addDoc(colRef, data);
+  }
+ 
+};
+
+
+//update Data 
+
+const update =(email,data)=>{
+  const docRef = doc(db,'users',email);
+  updateDoc(docRef,{
+    pin : data
+  }).then(()=> alert('set Data'))
+  
+}
+
+
+
 const registerWithEmailAndPass = async (email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(database, email, password);
@@ -32,5 +54,5 @@ const registerWithEmailAndPass = async (email, password) => {
     console.error(err);
   }
 };
-const db = getDatabase(app);
-export { database, db, registerWithEmailAndPass };
+
+export { update,usersRef,adding, database, registerWithEmailAndPass };

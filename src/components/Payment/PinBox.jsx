@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 export default function PinBox() {
  const history = useNavigate()
   const [pin, setPin] = useState("");
-  const { ...data } = useContext(customerData);
-const datapin = localStorage.getItem('pin')
-  const process = data[0][0];
+  const data = useContext(customerData);
+const datapin = data && data[data.length -1].pin
+
 
   const handleSubmit = () => {
     if (datapin === pin) {
