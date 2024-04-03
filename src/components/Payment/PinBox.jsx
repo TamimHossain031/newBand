@@ -1,25 +1,25 @@
 import { useContext, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import PinInput from "react-pin-input";
+import { useNavigate } from "react-router-dom";
 import sendLogo from "../../assets/istockphoto-1344841941-2048x2048_1_-removebg-preview.png";
 import { customerData } from "../../context";
-
+import { database } from "../../firebase.js";
 import Nav from "../HomePage/Nav";
-import Success from "./Success";
-import { useNavigate } from "react-router-dom";
 export default function PinBox() {
- const history = useNavigate()
+  const history = useNavigate();
   const [pin, setPin] = useState("");
+  const [user, loading, error] = useAuthState(database);
   const data = useContext(customerData);
-const datapin = data && data[data.length -1].pin
-
+  const MapData = data.filter((single) => single?.email == user?.email);
+  const datapin = MapData && MapData[MapData.length - 1].pin;
 
   const handleSubmit = () => {
     if (datapin === pin) {
-      history('/Pay/SendRecipient/PinBox/Success');
+      history("/Pay/SendRecipient/PinBox/Success");
     } else {
       alert("Enter valid PIN");
     }
-   
   };
 
   return (
@@ -60,7 +60,6 @@ const datapin = data && data[data.length -1].pin
       >
         Submit
       </button>
-      
     </section>
   );
 }

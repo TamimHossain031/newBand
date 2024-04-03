@@ -6,21 +6,20 @@ import { RiBankFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { customerData } from "../../context";
 import SingleStatus from "./SingleStatus.jsx";
-
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import { database } from "../../firebase.js";
 export default function RightSection() {
   const history = useNavigate();
   const data = useContext(customerData);
-  
+  const [user, loading, error] = useAuthState(database);
   
   const taka = localStorage.getItem('amount')
  
  
  
-  console.log(data);
-  
+ const MapData = data.filter(single => single?.email == user?.email)
 
-
+  console.log(MapData)
   const Status = [
     {
       name: "Bank account",
@@ -56,7 +55,7 @@ export default function RightSection() {
           </div>
         </div>
         <h1 class Name="mx-auto text-3xl">
-       {taka ? taka : data && data[0]?.amount} $
+       {taka ? taka : MapData && MapData[0]?.amount} $
         </h1>
       </div>
 
@@ -111,7 +110,7 @@ export default function RightSection() {
           </thead>
           <tbody className="text-xs">
           {
-            data && data.map(single=>{
+            MapData && MapData.map(single=>{
               return(
                 <tr key={crypto.randomUUID()}>
                   <td>{single?.time}</td>
