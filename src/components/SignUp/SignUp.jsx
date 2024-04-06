@@ -5,13 +5,11 @@ export default function SignUp({onClose}) {
   const [hide, setHide] = useState(true);
   const [email,setEmail] = useState('');
   const [password,setPassword]=useState('');
-  const handleSubmit=async(e)=>{
+  const handleSubmit=(e)=>{
     e.preventDefault();
-    try{
-      await registerWithEmailAndPass(email,password);
-    }catch(err){
-      alert('Cannot Connect')
-    }
+   
+    registerWithEmailAndPass(email,password);
+   
     onClose();
   }
   return (
