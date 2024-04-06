@@ -19,7 +19,7 @@ export default function RightSection() {
  
  const MapData = data.filter(single => single?.email == user?.email)
 
-  console.log(MapData)
+  
   const Status = [
     {
       name: "Bank account",

@@ -11,16 +11,17 @@ import {
 const firebaseConfig = {
   apiKey: `${import.meta.env.VITE_API_KEY}`,
 
-  authDomain: "fake-b46ec.firebaseapp.com",
+  authDomain: "projectone-6678d.firebaseapp.com",
 
-  projectId: "fake-b46ec",
+  projectId: "projectone-6678d",
 
-  storageBucket: "fake-b46ec.appspot.com",
+  storageBucket: "projectone-6678d.appspot.com",
 
-  messagingSenderId: "353389317122",
+  messagingSenderId: "55077998772",
 
-  appId: "1:353389317122:web:6eb318aa2501973f18eb1b"
+  appId: "1:55077998772:web:eba3b194bd8be26ca507e1",
 
+  measurementId: "G-4NSH6C8RCS",
 };
 
 const app = initializeApp(firebaseConfig);
